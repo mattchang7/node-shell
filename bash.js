@@ -1,13 +1,19 @@
 process.stdout.write('prompt > ');
 
-process.stdin.on('data', (data) => {
-    const cmd = data.toString().trim()
-    if (cmd === 'pwd'){
-        process.stdout.write(__dirname)
+let {proces} = require("./pwd")
+let {ls} = require("./ls")
+
+
+process.stdin.on('data', function(input){
+    input = input.toString().trim()
+    if(input === 'pwd'){
+        proces(input)
     }
-    else {
-        process.stdout.write('you typed: ' + cmd)
-    }   
-    process.stdout.write('\nprompt>')
+    else if (input === 'ls'){
+        ls(input)
+    }
 })
+
+
+
 
