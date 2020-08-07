@@ -5,6 +5,7 @@ let {ls} = require("./ls");
 const { write } = require("fs");
 const { cat } = require("./cat");
 const { BADHINTS } = require("dns");
+const {curl} = require("./curl")
 
 
 process.stdin.on('data', function(input){
@@ -17,6 +18,9 @@ process.stdin.on('data', function(input){
     }
     else if (input === 'cat'){
         cat(input)
+    }
+    else if (input === 'curl'){
+        curl(input)
     }
     else {
         process.stdout.write(`You typed: ${input}`)
