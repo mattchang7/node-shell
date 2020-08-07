@@ -1,15 +1,16 @@
 const fs = require('fs')
 
-module.exports.cat = function(data){
+module.exports.cat = function(data, done){
     process.stdout.write('filename > ');
     process.stdin.on('data', function(filename){
         filename = filename.toString().trim()
         fs.readFile(`./${filename}`, (err, fileContents) =>{
             if (err){
-              return err
+                done('something went wrong')
             }
-            else {process.stdout.write(fileContents);
-                  process.stdout.write('\nprompt > ')}
-          })
+            else {
+                done(fileContents)
+            }
+        })
     })
 }
